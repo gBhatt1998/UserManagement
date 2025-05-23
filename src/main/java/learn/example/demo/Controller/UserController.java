@@ -22,11 +22,7 @@ public class UserController {
     @Autowired
 private UserServiceImpl service;
 
-//    @PostMapping
-//    public ResponseEntity<String> createUser(@RequestBody User u){
-//        User savedUser=service.CreatUser(u);
-//        return new ResponseEntity<>("user created",HttpStatus.OK);
-//    }
+
 
 
     @GetMapping()
@@ -66,6 +62,10 @@ private UserServiceImpl service;
     ) {
         User user = service.updateUser(id, updatedUser);
         return ResponseEntity.ok("User updated successfully");
+    }
+    @GetMapping("/specificName/{a}")
+    public List<User> getUserByPageAndDerivedName(@PathVariable  char a){
+        return service.findByNameDerived(a);
     }
 
 }

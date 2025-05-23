@@ -4,7 +4,11 @@ import learn.example.demo.Model.User;
 import learn.example.demo.Repository.UserRepo;
 import learn.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +48,15 @@ public class UserServiceImpl implements UserService {
 
         updatedUser.setId(id);
         return userRepository.save(updatedUser);
+    }
+
+    public List<User> findByNameDerived(char name){
+        Pageable page = (Pageable) PageRequest.of(0,2);
+        Page<User> userDetailsPage=userRepository.findUserDetailsByNameStartingWith(name,page);
+        List<User> userDetailsList=userDetailsPage.getContent();
+
+        System.out.println("total Pages"+ userDetailsPage.getTotalPages());
+        return userDetailsList;
     }
 
 }
