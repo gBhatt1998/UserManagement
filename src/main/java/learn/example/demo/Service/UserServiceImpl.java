@@ -59,4 +59,8 @@ public class UserServiceImpl implements UserService {
         return userDetailsList;
     }
 
+    public User createUserWithAddress(User user) {
+        return userRepository.save(user);
+    }
+
 }

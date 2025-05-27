@@ -30,4 +30,8 @@ public class User {
    @Min(value = 18, message = "Age must be at least 18")
    @Column
    private int age;
+
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "address_id", referencedColumnName = "id")
+   private Address address;
 }

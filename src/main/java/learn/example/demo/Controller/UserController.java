@@ -68,4 +68,10 @@ private UserServiceImpl service;
         return service.findByNameDerived(a);
     }
 
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User saved = service.createUserWithAddress(user);
+        return ResponseEntity.ok(saved);
+    }
+
 }
