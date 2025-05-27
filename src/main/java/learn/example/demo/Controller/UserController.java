@@ -2,6 +2,7 @@ package learn.example.demo.Controller;
 
 
 import jakarta.validation.Valid;
+import learn.example.demo.Model.Address;
 import learn.example.demo.Model.User;
 import learn.example.demo.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +69,26 @@ private UserServiceImpl service;
         return service.findByNameDerived(a);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User saved = service.createUserWithAddress(user);
-        return ResponseEntity.ok(saved);
+    @PostMapping("/createUser")
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
+        return ResponseEntity.ok(service.saveUser(user));
+    }
+
+    @GetMapping("/createUser/{id}")
+    public ResponseEntity<User> getUserWithAddress(@PathVariable Long id) {
+        User user = service.getUserWithAddress(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("address/{id}")
+    public ResponseEntity<Address> getAddressById(@PathVariable Long id) {
+        Address address = service.getAddressById(id);
+//        System.out.print(address);
+        return address != null ? ResponseEntity.ok(address) : ResponseEntity.notFound().build();
     }
 
 }

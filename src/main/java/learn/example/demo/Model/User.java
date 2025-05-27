@@ -1,5 +1,6 @@
 package learn.example.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +32,9 @@ public class User {
    @Column
    private int age;
 
-   @OneToOne(cascade = CascadeType.ALL)
+
+//   @JsonManagedReference
+   @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
    @JoinColumn(name = "address_id", referencedColumnName = "id")
    private Address address;
 }

@@ -1,6 +1,8 @@
 package learn.example.demo.Service;
 
+import learn.example.demo.Model.Address;
 import learn.example.demo.Model.User;
+import learn.example.demo.Repository.AddressRepository;
 import learn.example.demo.Repository.UserRepo;
 import learn.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo repo;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -61,6 +66,15 @@ public class UserServiceImpl implements UserService {
 
     public User createUserWithAddress(User user) {
         return userRepository.save(user);
+    }
+
+    public User getUserWithAddress(Long id) {
+        return userRepository.findUserWithAddressById(id);
+    }
+
+    public Address getAddressById(Long id)
+    {
+       return addressRepository.findAddressById(id);
     }
 
 }
