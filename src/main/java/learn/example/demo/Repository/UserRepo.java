@@ -14,8 +14,8 @@ public class UserRepo {
 //        createUser();
     }
 
-    private List<User> userList=new ArrayList<User>();
-
+//    private List<User> userList=new ArrayList<User>();
+//
 //    public  void createUser(){
 //        List<User> newUser= List.of(
 //                new User(1L,"john","football","john@123",25),

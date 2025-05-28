@@ -32,6 +32,8 @@ public class User {
    @Column
    private int age;
 
+//   @OneToOne(mappedBy = "user")
+//   private Auth auth;
 
 //   @JsonManagedReference
    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
